@@ -1,0 +1,1 @@
+print(f"The numbers from 20 to 240 that could be divided on 20 or 21: {list(el for el in range(0, 241) if el % 20 == 0 or el % 21 == 0)}")
