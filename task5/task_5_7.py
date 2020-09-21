@@ -18,14 +18,18 @@ import json
 companies = {}
 av_profit = {"average_profit": 0}
 analitics = [companies, av_profit]
+profitable_companies = 0
 
 with open("text_7.txt", "r", encoding="utf-8") as file:
     for el in file:
         com_name, comp_form, profit, costs = el.split()
         companies[com_name] = int(profit) - int(costs)
         print(f"Прибыль компании {com_name} составляет: {int(profit) - int(costs)}")
-        av_profit["average_profit"] += companies[com_name]
-    av_profit["average_profit"] = av_profit["average_profit"] / len(companies.keys())
+        if int(profit) - int(costs) > 0:
+            av_profit["average_profit"] += companies[com_name]
+            profitable_companies += 1
+
+    av_profit["average_profit"] = av_profit["average_profit"] / profitable_companies
     print(analitics)
 
 with open("text_7_1.json", "w") as file:
